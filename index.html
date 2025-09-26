@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hera Accessories S.A.S</title>
+  <meta name="description" content="Accesorios elegantes: joyas, anillos, earcuffs y bisutería.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="Imagenes/Hera icon.jpeg">
+ <style>
+    :root{
+      --sand-100:#E9E0D7;
+      --cream:#F6F1EB;
+      --cocoa-700:#6A4B3A;
+      --cocoa-900:#3D2B23;
+      --white:#FFFFFF;
+      --accent:#B88A6A; /* cobre rosado sutil */
+      --shadow: 0 8px 24px rgba(61,43,35,0.12);
+      --radius: 14px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color: var(--cocoa-900);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:1100px;margin:0 auto;padding:0 16px}
+
+    /* Header / Nav */
+    header{
+      position: sticky; top:0; z-index: 50;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(106,75,58,0.15);
+      backdrop-filter: saturate(140%) blur(6px);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 0;
+    }
+    .brand{display:flex; align-items:center; gap:10px;}
+    .logo{
+      width:38px; height:38px; border-radius:50%;
+      background: linear-gradient(135deg,var(--sand-100),var(--white));
+      border: 2px solid var(--cocoa-700);
+      display:grid; place-items:center; box-shadow: var(--shadow);
+    }
+    .logo svg{width:24px;height:24px}
+    .brand-text{
+      font-family: "Playfair Display", serif;
+      font-weight:700; letter-spacing:0.6px; font-size: 1.05rem;
+    }
+    .actions{display:flex; align-items:center; gap:8px;}
+    .menu-toggle{
+      background: var(--cocoa-700); color: var(--white);
+      border:none; padding:10px 12px; border-radius:10px; cursor:pointer;
+      display:flex; align-items:center; gap:8px;
+    }
+    .menu-toggle svg{width:18px;height:18px}
+    .cart { position: relative; }
+    #cart-btn{
+      background: var(--white); color: var(--cocoa-900);
+      border:1px solid rgba(106,75,58,0.25); padding:8px 10px; border-radius:10px; cursor:pointer;
+      display:flex; align-items:center; gap:8px;
+    }
+    #cart-btn svg{width:18px;height:18px}
+    #cart-count{
+      background: var(--accent); color: var(--white);
+      font-size: 0.75rem; border-radius: 999px; padding: 2px 6px;
+    }
+    nav ul{
+      list-style:none; padding:0; margin:0;
+      display:none; /* mobile first: oculto hasta togglear */
+      flex-direction:column; gap:4px; padding-top:10px;
+    }
+    nav ul.show{display:flex}
+    nav a{padding:10px 12px; border-radius:10px;}
+    nav a:hover{background: var(--sand-100)}
+
+    /* Hero */
+    .hero{display:grid; gap:16px; padding: 60px 0 60px;}
+    .hero-card{
+      background: linear-gradient(90deg, var(--sand-100) 55%, var(--cocoa-700) 55%);
+      border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow);
+      display:grid; grid-template-columns: 1fr; min-height: 240px;
+    }
+    .hero-left{padding: 24px;}
+    .hero-title{
+      font-family: "Playfair Display", serif;
+      font-size: clamp(24px, 6vw, 40px);
+      margin:0 0 8px 0;
+    }
+    .hero-sub{margin:0 0 16px 0; color: rgba(61,43,35,0.85)}
+    .hero-cta{display:flex; gap:10px; flex-wrap:wrap;}
+    .btn{
+      padding:10px 14px; border-radius:12px; border:1px solid var(--cocoa-700);
+      background: var(--white); color: var(--cocoa-900); font-weight:600; cursor:pointer;
+    }
+    .btn.primary{background: var(--cocoa-700); color: var(--white); border-color: var(--cocoa-700);}
+    .hero-right{background: var(--cocoa-700); color: var(--white); padding: 18px 20px;}
+    .flora{opacity: 0.95;}
+    .flora svg{width:100%;height:auto}
+    .hero-note{margin-top:8px; font-size: 0.92rem; color: #F0E7DE}
+
+    /* Secciones */
+    section{padding: 60px 0} /* separación notable */
+
+    .section-title{
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem; margin:0 0 10px 0;
+    }
+    .muted{color: rgba(61,43,35,0.7)}
+
+    /* Valores */
+    .values{display:grid; grid-template-columns: 1fr; gap:12px;}
+    .value-card{
+      background: var(--white); border:1px solid rgba(106,75,58,0.15);
+      border-radius: var(--radius); padding:14px; box-shadow: var(--shadow);
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .value-icon{width:36px;height:36px;border-radius:10px;background:var(--sand-100);display:grid;place-items:center}
+    .value-icon svg{width:22px;height:22px}
+    .value-title{font-weight:600;margin:0 0 4px 0}
+
+    /* Grid de productos */
+    .grid{
+      display:grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap:12px;
+    }
+    .card{
+      background: var(--white); border:1px solid rgba(106,75,58,0.15);
+      border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow);
+      display:flex; flex-direction:column;
+    }
+    .card img{aspect-ratio: 1/1; object-fit: cover; background: var(--sand-100)}
+    .card-body{padding:12px}
+    .tag{
+      display:inline-block; font-size: 0.75rem; color: var(--white); background: var(--cocoa-700);
+      padding:4px 8px; border-radius:999px; margin-bottom:8px;
+    }
+    .card-title{margin:0 0 4px 0; font-weight:600}
+    .price{color: var(--cocoa-700); font-weight:600}
+    .card-actions{display:flex; gap:8px; margin-top:8px}
+    .btn.icon{display:flex;align-items:center;gap:8px}
+
+    /* Testimonios */
+    .testimonials{display:grid; grid-template-columns: 1fr; gap:12px;}
+    .testimonial{
+      background: var(--white); border:1px solid rgba(106,75,58,0.15);
+      border-radius: var(--radius); padding:14px; box-shadow: var(--shadow);
+    }
+    .stars{color:#D49F7A; font-size: 1.1rem}
+
+    /* Redes y footer */
+    .social{display:flex; gap:10px; flex-wrap:wrap;}
+    .social a{
+      display:flex; align-items:center; gap:8px;
+      padding:8px 12px; border:1px solid rgba(106,75,58,0.2);
+      border-radius:10px; background: var(--white)
+    }
+    .social svg{width:18px;height:18px}
+
+    footer{
+      background: var(--cocoa-700);
+      color: var(--white);
+      border-top: none;
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    /* Modal de detalles */
+    .modal{
+      display:none; position:fixed; z-index:100; left:0; top:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.6);
+    }
+    .modal-content{
+      background: var(--white); margin: 10% auto; padding: 20px;
+      border-radius: var(--radius); max-width: 420px; box-shadow: var(--shadow);
+    }
+    .modal-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
+    .modal-title{font-weight:700}
+    .close{
+      font-size: 1.5rem; cursor:pointer; border:none; background:transparent; line-height:1;
+    }
+    .modal-img{width:100%; border-radius:12px; margin:10px 0}
+
+    /* Modal del carrito */
+    .cart-modal {
+      display: none;
+      position: fixed;
+      z-index: 101;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+    }
+    .cart-modal-content {
+      background: var(--white);
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: var(--radius);
+      max-width: 600px;
+      box-shadow: var(--shadow);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(106,75,58,0.1);
+    }
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .cart-item-details {
+      flex: 1;
+    }
+    .cart-item-title {
+      font-weight: 600;
+      margin: 0 0 4px 0;
+    }
+    .cart-item-price {
+      color: var(--cocoa-700);
+      font-weight: 600;
+    }
+    .remove-item {
+      background: none;
+      border: none;
+      color: var(--cocoa-700);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+    }
+    .remove-item:hover {
+      background: rgba(106,75,58,0.1);
+    }
+    .cart-total {
+      text-align: right;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin: 16px 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(106,75,58,0.2);
+    }
+    .cart-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+    .empty-cart {
+      text-align: center;
+      padding: 20px;
+      color: rgba(61,43,35,0.6);
+    }
+
+    /* Modal de confirmación */
+    .confirmation-modal {
+      display: none;
+      position: fixed;
+      z-index: 102;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+    }
+    .confirmation-content {
+      background: var(--white);
+      margin: 20% auto;
+      padding: 30px;
+      border-radius: var(--radius);
+      max-width: 400px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .confirmation-icon {
+      font-size: 3rem;
+      color: #4CAF50;
+      margin-bottom: 16px;
+    }
+
+    /* Desktop refinements */
+    @media (min-width: 768px){
+      nav ul{display:flex !important; flex-direction:row; gap:8px; padding-top:0;}
+      .menu-toggle{display:none}
+      .actions{gap:12px}
+      .hero-card{grid-template-columns: 1.15fr 0.85fr;}
+      .values{grid-template-columns: repeat(3,1fr)}
+      .testimonials{grid-template-columns: repeat(3,1fr)}
+    }
+  </style>
+
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- Monograma H -->
+          <img src="Imagenes/Hera icon.jpeg" alt="Logo de Hera Accessories">
+        </div>
+        <div class="brand-text">HERA ACCESSORIES S.A.S</div>
+      </div>
+      <div class="actions">
+        <button class="menu-toggle" aria-controls="menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          Menú
+        </button>
+        <div class="cart">
+          <button id="cart-btn" class="btn icon" aria-label="Abrir carrito">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M6 6h15l-2 9H7L5 3H2"/>
+              <circle cx="9" cy="20" r="1"/>
+              <circle cx="18" cy="20" r="1"/>
+            </svg>
+            <span id="cart-count" aria-live="polite">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <nav>
+        <ul id="menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#coleccion">Colección</a></li>
+          <li><a href="#valores">Valores</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="container hero">
+      <div class="hero-card" role="banner">
+        <div class="hero-left">
+          <h1 class="hero-title">Accesorios que cuentan tu historia</h1>
+          <p class="hero-sub">Joyas, anillos y earcuffs con diseño elegante y materiales seleccionados.</p>
+          <div class="hero-cta">
+            <a class="btn primary" href="#coleccion">Ver colección</a>
+            <a class="btn" href="#contacto">Contáctanos</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="flora" aria-hidden="true">
+            <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="400" height="240" fill="none" />
+              <g stroke="#FFFFFF" stroke-width="1.4" fill="none" opacity="0.95">
+                <path d="M40 200 C80 160, 120 220, 160 180" />
+                <path d="M160 180 C200 140, 240 200, 280 160" />
+                <path d="M120 130 q20 -40 60 0 t60 0" />
+                <circle cx="210" cy="120" r="30" />
+                <path d="M280 160 C320 120, 360 180, 380 140" />
+              </g>
+            </svg>
+          </div>
+          <p class="hero-note">Paleta beige + café inspirada en el emblema floral de HERA.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="valores" class="container">
+      <h2 class="section-title">Nuestros valores</h2>
+      <p class="muted">Diseñamos con intención, seleccionamos con cuidado y entregamos con excelencia.</p>
+      <div class="values">
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L6.5 20l2-7L3 9h7z"/></svg>
+          </div>
+          <div>
+            <h3 class="value-title">Honestidad</h3>
+            <p> La honestidad es el 
+pilar fundamental que 
+guía todas nuestras 
+acciones y relaciones.</p>
+          </div>
+        </article>
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <div>
+            <h3 class="value-title">respeto</h3>
+            <p>El respeto es un valor 
+esencial que permea cada 
+aspecto de nuestro 
+negocio.</p>
+          
+    </section>
+
+    <section id="coleccion" class="container">
+      <h2 class="section-title">Colección</h2>
+      <p class="muted">Explora anillos, earcuffs, collares y bisutería con la estética HERA.</p>
+      <div class="grid">
+        <!-- Producto 1 -->
+        <article class="card" data-title="Anillo Aura" data-desc="Minimalista, baño dorado." data-img="Imagenes/anillo.png" data-price="15400">
+          <img src="Imagenes/anillo.png" alt="Anillo minimalista en acabado dorado">
+          <div class="card-body">
+            <span class="tag">Anillo</span>
+            <h3 class="card-title">Anillo Aura Suave</h3>
+            <p>Minimalista, baño dorado.</p>
+            <div class="price">$15.400</div>
+            <div class="card-actions">
+              <button class="btn icon add-to-cart" aria-label="Agregar Anillo Aura al carrito">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6h15l-2 9H7L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+                Agregar
+              </button>
+              <button class="btn details-btn">Detalles</button>
+            </div>
+          </div>
+        </article>
+        <!-- Producto 2 -->
+        <article class="card" data-title="Earcuff Lirio" data-desc="Plata pulida, ajuste cómodo." data-img="Imagenes/earcuff.png" data-price="33900">
+          <img src="Imagenes/earcuff.png" alt="Earcuff delicado color plata">
+          <div class="card-body">
+            <span class="tag">Earcuff</span>
+            <h3 class="card-title">Earcuff Rayo Nocturno</h3>
+            <p>Plata pulida, ajuste cómodo.</p>
+            <div class="price">$33.900</div>
+            <div class="card-actions">
+              <button class="btn icon add-to-cart" aria-label="Agregar Earcuff Lirio al carrito">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6h15l-2 9H7L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+                Agregar
+              </button>
+              <button class="btn details-btn">Detalles</button>
+            </div>
+          </div>
+        </article>
+        <!-- Producto 3 -->
+        <article class="card" data-title="Collar Helia" data-desc="Dije geométrico, baño oro rosa." data-img="Imagenes/collar.png" data-price="33000">
+          <img src="Imagenes/collar.png" alt="Collar fino con dije geométrico">
+          <div class="card-body">
+            <span class="tag">Collar</span>
+            <h3 class="card-title">Collar Esencia Clásica</h3>
+            <p>Dije geométrico, baño oro rosa.</p>
+            <div class="price">$33.000</div>
+            <div class="card-actions">
+              <button class="btn icon add-to-cart" aria-label="Agregar Collar Helia al carrito">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6h15l-2 9H7L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+                Agregar
+              </button>
+              <button class="btn details-btn">Detalles</button>
+            </div>
+          </div>
+        </article>
+        <!-- Producto 4 -->
+        <article class="card" data-title="Pulsera Sol dorado" data-desc="Eslabones finos, cierre seguro." data-img="Imagenes/pulsera sol.png" data-price="25000">
+          <img src="Imagenes/pulsera sol.png" alt="Pulsera elegante con eslabones">
+          <div class="card-body">
+            <span class="tag">Pulsera</span>
+            <h3 class="card-title">Pulsera Sol dorado</h3>
+            <p>Eslabones finos, cierre seguro.</p>
+            <div class="price">$25.000</div>
+            <div class="card-actions">
+              <button class="btn icon add-to-cart" aria-label="Agregar Pulsera Ícaro al carrito">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6h15l-2 9H7L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+                Agregar
+              </button>
+              <button class="btn details-btn">Detalles</button>
+            </div>
+          </div>
+        </article>
+        <!-- Producto 5 -->
+        <article class="card" data-title="Stud Hera" data-desc="Clásicos, hipoalergénicos." data-img="Imagenes/aretes.png" data-price="49900">
+          <img src="Imagenes/aretes.png" alt="Aretes pequeños tipo stud">
+          <div class="card-body">
+            <span class="tag">Aretes</span>
+            <h3 class="card-title">Arete Estrella Fugaz</h3>
+            <p>Clásicos, hipoalergénicos.</p>
+            <div class="price">$44.000</div>
+            <div class="card-actions">
+              <button class="btn icon add-to-cart" aria-label="Agregar Stud Hera al carrito">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6h15l-2 9H7L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+                Agregar
+              </button>
+              <button class="btn details-btn">Detalles</button>
+            </div>
+          </div>
+        </article>
+        <!-- Producto 6 -->
+        <article class="card" data-title="Broche Muse" data-desc="Vintage, detalles delicados." data-img="Imagenes/aretesV.png" data-price="39900">
+          <img src="Imagenes/aretesV.png" alt="Broche decorativo estilo vintage">
+          <div class="card-body">
+            <span class="tag">Aretes</span>
+            <h3 class="card-title">Arete Atena</h3>
+            <p>Vintage, detalles delicados.</p>
+            <div class="price">$44.000</div>
+            <div class="card-actions">
+              <button class="btn icon add-to-cart" aria-label="Agregar Broche Muse al carrito">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6h15l-2 9H7L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+                Agregar
+              </button>
+              <button class="btn details-btn">Detalles</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="testimonios" class="container">
+      <h2 class="section-title">Testimonios</h2>
+      <p class="muted">Lo que dicen nuestras clientas.</p>
+      <div class="testimonials">
+        <article class="testimonial">
+          <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+          <p>"Compré el Earcuff Negro noche y no me lo quito. Cómodo y elegante."</p>
+          <small>— Daniela M.</small>
+        </article>
+        <article class="testimonial">
+          <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+          <p>"El Anillo Aura Suave tiene un brillo perfecto, combina con todo."</p>
+          <small>— Laura G.</small>
+        </article>
+        <article class="testimonial">
+          <div class="stars" aria-label="4 de 5 estrellas">★★★★☆</div>
+          <p>"Entrega rápida y empaque hermoso. Experiencia premium."</p>
+          <small>— Natalia R.</small>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto" class="container">
+      <h2 class="section-title">Redes y contacto</h2>
+      <p class="muted">Síguenos y escríbenos para pedidos personalizados.</p>
+      <div class="social" aria-label="Redes sociales">
+        <a href="https://instagram.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <span>@hera.accessories</span>
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 3h-3a4 4 0 0 0-4 4v3H6v4h2v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <span>/heraaccessories</span>
+        </a>
+        <a href="https://wa.me/573000000000" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M7 16c3 3 7 3 10-1l-3-2-2 1-3-3 1-2-2-3"/></svg>
+          <span>WhatsApp</span>
+        </a>
+        <a href="mailto:hola@hera.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 5h18v14H3z"/><path d="M3 7l9 6 9-6"/></svg>
+          <span>hola@hera.com</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 HERA ACCESSORIES S.A.S — Barranquilla, Colombia.</p>
+    </div>
+  </footer>
+
+  <!-- Modal de detalles -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Detalles del producto</h3>
+        <button id="close-modal" class="close" aria-label="Cerrar">&times;</button>
+      </div>
+      <img id="modal-img" class="modal-img" src="" alt="" />
+      <p id="modal-desc">Aquí aparecerá la descripción.</p>
+      <div style="display:flex;gap:8px; margin-top:8px;">
+        <button id="modal-add" class="btn primary">Agregar al carrito</button>
+        <button id="modal-close-secondary" class="btn">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal del carrito -->
+  <div id="cart-modal" class="cart-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="cart-modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Tu carrito de compras</h3>
+        <button id="close-cart-modal" class="close" aria-label="Cerrar">&times;</button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="cart-total" id="cart-total">Total: $0</div>
+      <div class="cart-actions">
+        <button id="cancel-order" class="btn">Cancelar</button>
+        <button id="place-order" class="btn primary">Pedir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación -->
+  <div id="confirmation-modal" class="confirmation-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="confirmation-content">
+      <div class="confirmation-icon">✓</div>
+      <h3>¡Pedido realizado exitosamente!</h3>
+      <p>Gracias por tu compra. Te contactaremos pronto para coordinar la entrega.</p>
+      <button id="close-confirmation" class="btn primary" style="margin-top: 16px;">Aceptar</button>
+    </div>
+  </div>
+
+  <script>
+    // Menú hamburguesa accesible (mobile-first)
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('menu');
+    toggle?.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('show');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Smooth scroll básico para anclas
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    // Carrito mejorado
+    let cart = [];
+    const cartCountEl = document.getElementById('cart-count');
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartTotalEl = document.getElementById('cart-total');
+    const cartModal = document.getElementById('cart-modal');
+    const cartBtn = document.getElementById('cart-btn');
+    const closeCartModalBtn = document.getElementById('close-cart-modal');
+    const cancelOrderBtn = document.getElementById('cancel-order');
+    const placeOrderBtn = document.getElementById('place-order');
+    const confirmationModal = document.getElementById('confirmation-modal');
+    const closeConfirmationBtn = document.getElementById('close-confirmation');
+
+    // Función para actualizar el contador del carrito
+    const updateCartCount = () => {
+      cartCountEl.textContent = cart.length;
+    };
+
+    // Función para agregar producto al carrito
+    const addToCart = (product) => {
+      // Verificar si el producto ya está en el carrito
+      const existingProduct = cart.find(item => item.title === product.title);
+      
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        cart.push({
+          ...product,
+          quantity: 1
+        });
+      }
+      
+      updateCartCount();
+      // Feedback visual
+      const addBtn = event.target.closest('.add-to-cart');
+      if (addBtn) {
+        const originalText = addBtn.innerHTML;
+        addBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6h15l-2 9H7L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg> Agregado ✓';
+        setTimeout(() => {
+          addBtn.innerHTML = originalText;
+        }, 1200);
+      }
+    };
+
+    // Función para eliminar producto del carrito
+    const removeFromCart = (index) => {
+      cart.splice(index, 1);
+      updateCartCount();
+      renderCartItems();
+    };
+
+    // Función para renderizar los items del carrito
+    const renderCartItems = () => {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = '<div class="empty-cart">Tu carrito está vacío</div>';
+        cartTotalEl.textContent = 'Total: $0';
+        placeOrderBtn.disabled = true;
+        return;
+      }
+      
+      placeOrderBtn.disabled = false;
+      
+      let total = 0;
+      cartItemsEl.innerHTML = cart.map((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        return `
+          <div class="cart-item">
+            <img src="${item.img}" alt="${item.title}">
+            <div class="cart-item-details">
+              <h4 class="cart-item-title">${item.title}</h4>
+              <p>${item.desc}</p>
+              <div class="cart-item-price">$${item.price.toLocaleString()} x ${item.quantity}</div>
+            </div>
+            <button class="remove-item" data-index="${index}" aria-label="Eliminar ${item.title} del carrito">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+        `;
+      }).join('');
+      
+      cartTotalEl.textContent = `Total: $${total.toLocaleString()}`;
+      
+      // Agregar event listeners a los botones de eliminar
+      document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = parseInt(btn.getAttribute('data-index'));
+          removeFromCart(index);
+        });
+      });
+    };
+
+    // Event listeners para agregar productos al carrito
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', (event) => {
+        const card = event.target.closest('.card');
+        if (card) {
+          const product = {
+            title: card.dataset.title || card.querySelector('.card-title').textContent,
+            desc: card.dataset.desc || card.querySelector('p').textContent,
+            img: card.dataset.img || card.querySelector('img').src,
+            price: parseInt(card.dataset.price) || parseInt(card.querySelector('.price').textContent.replace(/\D/g, ''))
+          };
+          addToCart(product);
+        }
+      });
+    });
+
+    // Abrir modal del carrito
+    cartBtn.addEventListener('click', () => {
+      renderCartItems();
+      cartModal.style.display = 'block';
+      cartModal.setAttribute('aria-hidden', 'false');
+    });
+
+    // Cerrar modal del carrito
+    closeCartModalBtn.addEventListener('click', () => {
+      cartModal.style.display = 'none';
+      cartModal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Cancelar pedido (vaciar carrito)
+    cancelOrderBtn.addEventListener('click', () => {
+      cart = [];
+      updateCartCount();
+      renderCartItems();
+      cartModal.style.display = 'none';
+      cartModal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Realizar pedido
+    placeOrderBtn.addEventListener('click', () => {
+      // Aquí normalmente se enviaría el pedido a un servidor
+      // Por ahora solo mostramos la confirmación
+      cartModal.style.display = 'none';
+      cartModal.setAttribute('aria-hidden', 'true');
+      
+      confirmationModal.style.display = 'block';
+      confirmationModal.setAttribute('aria-hidden', 'false');
+      
+      // Vaciar el carrito después del pedido
+      cart = [];
+      updateCartCount();
+    });
+
+    // Cerrar modal de confirmación
+    closeConfirmationBtn.addEventListener('click', () => {
+      confirmationModal.style.display = 'none';
+      confirmationModal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Cerrar modales al hacer clic fuera
+    window.addEventListener('click', (e) => {
+      if (e.target === cartModal) {
+        cartModal.style.display = 'none';
+        cartModal.setAttribute('aria-hidden', 'true');
+      }
+      if (e.target === confirmationModal) {
+        confirmationModal.style.display = 'none';
+        confirmationModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Cerrar modales con tecla Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        cartModal.style.display = 'none';
+        cartModal.setAttribute('aria-hidden', 'true');
+        confirmationModal.style.display = 'none';
+        confirmationModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Modal de detalles (existente)
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalImg = document.getElementById('modal-img');
+    const closeModalBtn = document.getElementById('close-modal');
+    const modalCloseSecondary = document.getElementById('modal-close-secondary');
+    const modalAddBtn = document.getElementById('modal-add');
+
+    let currentCard = null;
+
+    const openModal = (card) => {
+      currentCard = card;
+      const title = card.dataset.title || card.querySelector('.card-title')?.textContent || 'Producto';
+      const desc = card.dataset.desc || card.querySelector('p')?.textContent || '';
+      const img = card.dataset.img || card.querySelector('img')?.src || '';
+
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+      modalImg.src = img;
+      modalImg.alt = `Imagen de ${title}`;
+
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+      closeModalBtn.focus();
+    };
+
+    const closeModal = () => {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      currentCard = null;
+    };
+
+    document.querySelectorAll('.details-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
+        if (card) openModal(card);
+      });
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modalCloseSecondary.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+    modalAddBtn.addEventListener('click', () => {
+      if (currentCard) {
+        const product = {
+          title: currentCard.dataset.title || currentCard.querySelector('.card-title').textContent,
+          desc: currentCard.dataset.desc || currentCard.querySelector('p').textContent,
+          img: currentCard.dataset.img || currentCard.querySelector('img').src,
+          price: parseInt(currentCard.dataset.price) || parseInt(currentCard.querySelector('.price').textContent.replace(/\D/g, ''))
+        };
+        addToCart(product);
+        
+        // Feedback simple
+        modalAddBtn.textContent = 'Agregado ✓';
+        setTimeout(() => {
+          modalAddBtn.textContent = 'Agregar al carrito';
+        }, 1200);
+      }
+    });
+  </script>
+</body>
+</html>
